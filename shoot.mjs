@@ -18,9 +18,6 @@ const TARGETS = [
   ["dental", local("dental")],
   ["barber", local("barber")],
   ["coffee", local("coffee")],
-  ["reserve", "https://reserve-topaz.vercel.app/"],
-  ["venomopen", "https://venomopen.com.ua/"],
-  ["matchflow", "https://matchfow-os.vercel.app/"],
 ];
 
 let browser;
