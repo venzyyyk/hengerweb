@@ -165,6 +165,15 @@ main{position:relative;z-index:1}
 .case .body{display:flex;flex-direction:column;gap:18px;align-self:center}
 .case h2{margin:0;font:900 clamp(40px,6vw,104px)/.92 var(--disp);letter-spacing:-.05em}
 .case p{margin:0;font-size:clamp(17px,1.4vw,21px);max-width:42ch;opacity:.85}
+.case .cx{display:grid;gap:14px;padding:18px 20px;border:1px solid color-mix(in srgb,var(--paper) 18%,transparent);border-radius:16px;background:#ffffff08}
+.case .cx .row{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;align-items:baseline}
+.case .cx .cap{opacity:.55}
+.case .cx p{font-size:15px;opacity:.9;max-width:none}
+.case .cx .stk{font:600 13px var(--disp);letter-spacing:.01em}
+.case .cx ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px}
+.case .cx li{position:relative;padding-left:18px}.case .cx li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:2px;background:var(--blue)}
+@media(max-width:760px){.case .cx .row{grid-template-columns:1fr;gap:4px}}
+.case .body{align-self:start}
 .case .soon{padding:16px 18px;border:1px dashed color-mix(in srgb,var(--paper) 40%,transparent);border-radius:14px;opacity:.75;font-size:14px}
 .case .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
 .case .acts button{min-height:44px;padding:0 18px;border-radius:99px;border:1px solid currentColor;background:none;color:inherit;font:600 12px var(--disp);cursor:pointer}
@@ -341,7 +350,7 @@ main{position:relative;z-index:1}
     <div class="cap" id="cTag"></div>
     <h2 id="cTitle"></h2>
     <p id="cDesc"></p>
-    <div class="soon" data-i18n="soon">Подробный кейс — задача, стек и результат — добавлю сюда.</div>
+    <div class="cx" id="cCase"></div>
     <div class="acts">
       <button id="cPrev" data-hover data-i18n="prev">← Пред.</button>
       <a class="pill go" id="cGo" href="#" target="_blank" rel="noopener" data-hover data-i18n="openSite">Открыть сайт ↗</a>
@@ -394,6 +403,24 @@ const PROJECTS=[
   {t:"WinCase",d:tr("Telegram mini-app на TON и Stars","Telegram mini-app on TON and Stars"),k:"orb",tag:"Mini App",y:"2026",m:"W",tg:{name:"WinCase",msgs:[["bot",tr("🎁 Новые кейсы уже в приложении","🎁 New cases are live in the app")],["bot",tr("Пополнение через TON и Telegram Stars","Top up with TON and Telegram Stars")]],btn:tr("Открыть приложение","Open app")}},
   {t:"Lead Hunter",d:tr("Юзербот, который ловит заказы в TG-чатах","Userbot that catches job posts in Telegram chats"),k:"dots",tag:tr("Бот","Bot"),y:"2026",m:"L",tg:{name:"Lead Hunter",msgs:[["bot",tr("🔔 Новый заказ · чат «Фриланс IT»","🔔 New lead · “Freelance IT” chat")],["bot",tr("«Нужен лендинг на Next.js, сроки — неделя»","“Need a Next.js landing page, one-week deadline”")],["me","/list_chats"]],btn:tr("Открыть сообщение","Open message")}},
   {t:"TG Automation",d:tr("Telegram-автоматизация с LLM: нейрокомменты, автоответы, админка","Telegram automation with LLM: AI comments, auto-replies, admin panel"),k:"grid",tag:tr("Софт · FastAPI + Telethon","Software · FastAPI + Telethon"),y:"2026",m:"T",tg:{name:tr("Панель управления","Control panel"),msgs:[["bot",tr("Сессии: 5 активны · прокси ок","Sessions: 5 active · proxies OK")],["bot",tr("Нейрокомментинг: включён","AI commenting: on")],["bot",tr("LLM-автоответчик: включён","LLM auto-replies: on")]],btn:tr("Открыть админку","Open admin")}},
+];
+const CASES=[
+  tr({task:"Показать, как может выглядеть сайт PS5-клуба, где гость за минуту выбирает зону и бронирует вечер.",done:["Первый экран с живым статусом — сколько зон свободно прямо сейчас","Карточки зон и бегущая строка с играми, которые есть в клубе","Вечерние пакеты с понятными ценами","Форма брони: зона, время, контакты — без звонков","Ответы на частые вопросы перед первым визитом"],stack:"HTML · CSS · JavaScript",res:"Готовая основа под реальный клуб: меняются название, фото и цены — и сайт можно запускать."},
+     {task:"Show what a PS5 club website could look like, where a guest picks a zone and books an evening in a minute.",done:["Hero with a live status — how many zones are free right now","Zone cards and a ticker with the games on offer","Evening packages with clear prices","Booking form: zone, time, contacts — no phone calls","Answers to the usual first-visit questions"],stack:"HTML · CSS · JavaScript",res:"A ready base for a real club: swap the name, photos and prices and it's ready to launch."}),
+  tr({task:"Сделать сайт картинг-центра, после которого хочется сразу поехать кататься.",done:["Заставка с загрузкой и огромным «RACE TONIGHT» на первом экране","Таймер до следующего заезда","Виды заездов и описание трассы","Таблица лучших кругов недели","Бронь места на старте и FAQ"],stack:"HTML · CSS · JavaScript",res:"Агрессивный спортивный стиль, который выделяет бизнес среди скучных сайтов конкурентов."},
+     {task:"Build a karting centre website that makes you want to go racing right away.",done:["Loading intro and a huge “RACE TONIGHT” on the first screen","Countdown to the next heat","Session types and a track overview","This week's fastest laps leaderboard","Grid-spot booking and FAQ"],stack:"HTML · CSS · JavaScript",res:"An aggressive racing look that stands out from competitors' dull sites."}),
+  tr({task:"Сделать сайт стоматологии, который снимает страх перед визитом и доводит до записи.",done:["Спокойный светлый дизайн и понятные цены прямо на первом экране","Все услуги на одной странице","Блок с врачами — чтобы человек знал, к кому идёт","Отзывы и запись на удобное время","FAQ: страховка, срочные случаи, первый визит"],stack:"HTML · CSS · JavaScript",res:"Сайт, который отвечает на вопросы пациента раньше, чем он успел их задать."},
+     {task:"Build a dental clinic website that eases visit anxiety and leads to a booking.",done:["Calm, light design with clear prices on the first screen","All services on one page","Meet-the-team block so patients know who they'll see","Reviews and booking at a convenient time","FAQ: insurance, emergencies, first visit"],stack:"HTML · CSS · JavaScript",res:"A site that answers a patient's questions before they ask them."}),
+  tr({task:"Передать атмосферу классического барбершопа и упростить запись к мастеру.",done:["Прайс в стиле старой вывески с точками до цены","Карточки мастеров со специализацией","Онлайн-запись: мастер, услуга, время — сумма считается сразу","Отзывы и часы работы","Заставка с логотипом при загрузке"],stack:"HTML · CSS · JavaScript",res:"Клиент записывается сам за пару кликов — администратору меньше звонков."},
+     {task:"Capture the feel of a classic barbershop and make booking a barber simple.",done:["Old-sign style price list with dotted leaders","Barber cards with their specialities","Online booking: barber, service, time — price updates instantly","Reviews and opening hours","Logo intro while the page loads"],stack:"HTML · CSS · JavaScript",res:"Clients book themselves in a couple of clicks — fewer calls for the front desk."}),
+  tr({task:"Сделать сайт обжарщика кофе, который продаёт через атмосферу и вкус.",done:["Интро-анимация «наливаем шот» при загрузке","Каталог обжарок недели с нотами вкуса","Конструктор бокса — собери свой набор","История про обжарку маленькими партиями","Блок «приходи в гости»"],stack:"HTML · CSS · JavaScript",res:"Сайт-история с магазином внутри: человек сначала влюбляется, потом покупает."},
+     {task:"Build a coffee roaster website that sells through mood and flavour.",done:["“Pulling the shot” intro animation","This week's roasts with tasting notes","Build-a-box configurator","The small-batch roasting story","Visit-the-roastery section"],stack:"HTML · CSS · JavaScript",res:"A story site with a shop inside: people fall for it first, then buy."}),
+  tr({task:"Mini-app прямо внутри Telegram: кейсы и игры с оплатой в TON и Telegram Stars.",done:["Приложение открывается из бота, без установки","Пополнение через TON и Telegram Stars","Отдельные админ-боты для управления","Свой сервер: Docker Compose, HTTPS через Caddy","Обновления выкатываются одним скриптом"],stack:"TypeScript · Docker · Caddy · Telegram Bot API · TON",res:"Работает на своём VPS, заказчик управляет всем через ботов."},
+     {task:"A mini-app right inside Telegram: cases and games paid with TON and Telegram Stars.",done:["Opens from the bot, nothing to install","Top-ups via TON and Telegram Stars","Separate admin bots for management","Own server: Docker Compose, HTTPS via Caddy","Updates ship with one script"],stack:"TypeScript · Docker · Caddy · Telegram Bot API · TON",res:"Runs on its own VPS; the client manages everything through bots."}),
+  tr({task:"Перестать платить $30 в месяц за чужой бот и ловить заказы на разработку из Telegram-чатов самому.",done:["Юзербот на Telethon следит за нужными чатами","LLM отсекает мусор и оставляет реальные заказы","Найденный заказ сразу прилетает мне в личку","Чаты добавляются командой /add_chat"],stack:"Python · Telethon · aiogram · LLM",res:"Свой инструмент вместо платной подписки — заказы приходят в реальном времени."},
+     {task:"Stop paying $30 a month for someone else's bot and catch dev jobs in Telegram chats myself.",done:["A Telethon userbot watches the chats I choose","An LLM filters out noise and keeps real jobs","Each lead lands in my DMs instantly","Chats are added with /add_chat"],stack:"Python · Telethon · aiogram · LLM",res:"My own tool instead of a paid subscription — leads arrive in real time."}),
+  tr({task:"Клиенту нужен софт для продвижения в Telegram, которым можно управлять без программиста.",done:["Работа с несколькими аккаунтами, у каждого свой прокси","Нейрокомментарии через LLM","LLM-автоответы на входящие сообщения","Админка: тексты и настройки меняются без кода","Установка на сервер одной командой (systemd + nginx)"],stack:"Python · FastAPI · Telethon · OpenAI API · nginx",res:"Демо сдано, модуль нейрокомментинга оплачен; софт развёрнут у клиентов на их серверах."},
+     {task:"A client needed Telegram promotion software they could run without a developer.",done:["Multiple accounts, each with its own proxy","AI comments via an LLM","LLM auto-replies to incoming messages","Admin panel: copy and settings change without code","One-command server install (systemd + nginx)"],stack:"Python · FastAPI · Telethon · OpenAI API · nginx",res:"Demo delivered, the AI-comment module paid for; clients run it on their own servers."}),
 ];
 const STACK=["Next.js","TypeScript","Three.js","GSAP","Tailwind","Prisma","PostgreSQL","Stripe","Docker","Python","aiogram","WordPress"];
 const SERVICES=[
@@ -703,7 +730,11 @@ function fillCase(i){const p=PROJECTS[i];csIdx=i;
   cArt.className="art k-"+p.k+(p.shot?" has-shot":"")+(p.tg?" has-tg":"");cArt.innerHTML=`<span class="tag cap">${esc(p.tag)}</span><em>${String(i+1).padStart(2,"0")}</em>${visual(p,i)}`;
   const go=$("#cGo");if(p.url){go.href=p.url;go.style.display=""}else go.style.display="none";
   $("#cTag").textContent=`${String(i+1).padStart(2,"0")} / ${String(PROJECTS.length).padStart(2,"0")} — ${p.tag}, ${p.y}`;
-  $("#cTitle").textContent=p.t;$("#cDesc").textContent=p.d}
+  $("#cTitle").textContent=p.t;$("#cDesc").textContent=p.d;
+  const c=CASES[i];$("#cCase").innerHTML=c?`<div class="row"><span class="cap">${tr("Задача","Task")}</span><p>${esc(c.task)}</p></div>
+    <div class="row"><span class="cap">${tr("Что сделано","What I did")}</span><ul>${c.done.map(d=>`<li>${esc(d)}</li>`).join("")}</ul></div>
+    <div class="row"><span class="cap">${tr("Стек","Stack")}</span><p class="stk">${esc(c.stack)}</p></div>
+    <div class="row"><span class="cap">${tr("Итог","Result")}</span><p>${esc(c.res)}</p></div>`:""}
 const clipOf=el=>{const r=el.getBoundingClientRect();return `inset(${r.top}px ${innerWidth-r.right}px ${innerHeight-r.bottom}px ${r.left}px round 18px)`};
 function openCase(i){fillCase(i);csOpen=true;csFrom=cards[i].querySelector(".art");
   lenis&&lenis.stop();cs.classList.add("open");document.body.style.overflow="hidden";
