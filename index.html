@@ -158,22 +158,23 @@ main{position:relative;z-index:1}
 .case .art.has-shot .win{left:24px;right:24px;top:64px}.case .art.has-tg .tgm{inset:60px 24px 24px;font-size:15px}
 /* case overlay */
 .case{position:fixed;inset:0;z-index:70;background:var(--ink);color:var(--paper);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
-  gap:clamp(20px,4vw,60px);padding:clamp(76px,10vh,110px) max(4vw,16px) clamp(24px,5vh,48px);overflow:auto;visibility:hidden}
+  gap:clamp(20px,4vw,60px);padding:clamp(76px,10vh,110px) max(4vw,16px) clamp(24px,5vh,48px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;visibility:hidden}
+.case::-webkit-scrollbar{display:none}
 .case.open{visibility:visible}
-.case .art{height:100%;min-height:300px}
+.case .art{height:100%;min-height:300px;max-height:calc(100svh - 150px);align-self:center}
+@media(min-width:761px){.case{align-items:center}}
 .case .art b{font-size:clamp(120px,18vw,300px)}
-.case .body{display:flex;flex-direction:column;gap:18px;align-self:center}
-.case h2{margin:0;font:900 clamp(40px,6vw,104px)/.92 var(--disp);letter-spacing:-.05em}
+.case .body{display:flex;flex-direction:column;gap:14px;align-self:center}
+.case h2{margin:0;font:900 clamp(36px,4.4vw,78px)/.92 var(--disp);letter-spacing:-.05em}
 .case p{margin:0;font-size:clamp(17px,1.4vw,21px);max-width:42ch;opacity:.85}
-.case .cx{display:grid;gap:14px;padding:18px 20px;border:1px solid color-mix(in srgb,var(--paper) 18%,transparent);border-radius:16px;background:#ffffff08}
+.case .cx{display:grid;gap:10px;padding:14px 18px;border:1px solid color-mix(in srgb,var(--paper) 18%,transparent);border-radius:16px;background:#ffffff08}
 .case .cx .row{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;align-items:baseline}
 .case .cx .cap{opacity:.55}
-.case .cx p{font-size:15px;opacity:.9;max-width:none}
+.case .cx p{font-size:14px;opacity:.9;max-width:none}
 .case .cx .stk{font:600 13px var(--disp);letter-spacing:.01em}
-.case .cx ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px}
+.case .cx ul{margin:0;padding:0;list-style:none;display:grid;gap:3px;font-size:14px}
 .case .cx li{position:relative;padding-left:18px}.case .cx li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:2px;background:var(--blue)}
 @media(max-width:760px){.case .cx .row{grid-template-columns:1fr;gap:4px}}
-.case .body{align-self:start}
 .case .soon{padding:16px 18px;border:1px dashed color-mix(in srgb,var(--paper) 40%,transparent);border-radius:14px;opacity:.75;font-size:14px}
 .case .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
 .case .acts button{min-height:44px;padding:0 18px;border-radius:99px;border:1px solid currentColor;background:none;color:inherit;font:600 12px var(--disp);cursor:pointer}
@@ -343,7 +344,7 @@ main{position:relative;z-index:1}
     </div>
   </section>
 </main>
-<div class="case" id="case" role="dialog" aria-modal="true" aria-labelledby="cTitle">
+<div class="case" id="case" data-lenis-prevent role="dialog" aria-modal="true" aria-labelledby="cTitle">
   <button class="x" id="cClose" data-hover data-i18n="close">Закрыть ✕</button>
   <div class="art" id="cArt"></div>
   <div class="body">
@@ -359,7 +360,7 @@ main{position:relative;z-index:1}
     </div>
   </div>
 </div>
-<nav class="menu" id="menu" aria-label="Меню">
+<nav class="menu" id="menu" data-lenis-prevent aria-label="Меню">
   <a class="big" href="#works"><span><span data-i18n="nWorks">Работы</span><em>08</em></span></a>
   <a class="big" href="#about"><span data-i18n="nAbout">Обо мне</span></a>
   <a class="big" href="#services"><span data-i18n="nSvc">Услуги</span></a>
@@ -739,8 +740,7 @@ const clipOf=el=>{const r=el.getBoundingClientRect();return `inset(${r.top}px ${
 function openCase(i){fillCase(i);csOpen=true;csFrom=cards[i].querySelector(".art");
   lenis&&lenis.stop();cs.classList.add("open");document.body.style.overflow="hidden";
   gsap.fromTo(cs,{clipPath:clipOf(csFrom)},{clipPath:"inset(0px 0px 0px 0px round 0px)",duration:reduce?.01:.9,ease:"expo.inOut"});
-  gsap.fromTo(cs.querySelectorAll(".body>*"),{y:40,opacity:0},{y:0,opacity:1,duration:.8,stagger:.06,delay:reduce?0:.35,ease:"expo.out"});
-  $("#cClose").focus({preventScroll:true})}
+  gsap.fromTo(cs.querySelectorAll(".body>*"),{y:40,opacity:0},{y:0,opacity:1,duration:.8,stagger:.06,delay:reduce?0:.35,ease:"expo.out"});}
 function closeCase(){if(!csOpen)return;csOpen=false;const from=cards[csIdx].querySelector(".art");
   gsap.to(cs,{clipPath:clipOf(from),duration:reduce?.01:.75,ease:"expo.inOut",onComplete:()=>{cs.classList.remove("open");cs.style.clipPath="";
     document.body.style.overflow="";lenis&&lenis.start();from.closest("a").focus({preventScroll:true})}})}
