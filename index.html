@@ -54,6 +54,9 @@ main{position:relative;z-index:1}
 .menu .mb{display:flex;justify-content:space-between;gap:12px;margin-top:40px;padding-top:18px;border-top:1px solid #ffffff22}
 @media(max-width:640px){.nav{display:none}.burger{display:block}.hd .pill{min-height:36px;padding:0 14px;font-size:11px}.hd{gap:8px}.hd .pill{margin-left:auto}}
 
+.lang{display:inline-flex;align-items:center;gap:4px;min-height:40px;padding:0 6px;border:0;background:none;color:inherit;font:600 11px var(--disp);letter-spacing:.08em;cursor:pointer}
+.lang span{opacity:.45;transition:opacity .3s}.lang span.on{opacity:1;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:640px){.lang{margin-left:auto}.hd .pill{margin-left:0}}
 /* cursor */
 .cur{position:fixed;left:0;top:0;z-index:60;width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid #fff;border-radius:50%;pointer-events:none;mix-blend-mode:difference;transition:width .35s,height .35s,margin .35s,background .35s}
 .cur.on{width:78px;height:78px;margin:-39px 0 0 -39px;background:#fff}
@@ -253,8 +256,9 @@ main{position:relative;z-index:1}
 
 <header class="hd">
   <a class="logo" href="#top" data-hover>alekseyhenger<sup>®</sup></a>
-  <nav class="nav"><a href="#works" data-hover>Работы</a><a href="#about" data-hover>Обо мне</a><a href="#services" data-hover>Услуги</a></nav>
-  <a class="pill mag" href="https://t.me/alekseyhenger" target="_blank" rel="noopener" data-hover>Написать ↗</a>
+  <nav class="nav"><a href="#works" data-hover data-i18n="nWorks">Работы</a><a href="#about" data-hover data-i18n="nAbout">Обо мне</a><a href="#services" data-hover data-i18n="nSvc">Услуги</a></nav>
+  <button class="lang" id="lang" type="button" aria-label="Язык / Language" data-hover><span data-l="ru">RU</span>/<span data-l="en">EN</span></button>
+  <a class="pill mag" href="https://t.me/alekseyhenger" target="_blank" rel="noopener" data-hover data-i18n="write">Написать ↗</a>
   <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
 </header>
 
@@ -262,28 +266,28 @@ main{position:relative;z-index:1}
   <section class="hero" id="hero">
     <h1 class="sr">made by alekseyhenger — сайты, 3D и Telegram-боты</h1>
     <div class="made" data-hero><span class="w"><span>made by</span></span></div>
-    <div class="sub cap" data-hero>сайты · 3D-интерфейсы · telegram-боты</div>
+    <div class="sub cap" data-hero data-i18n="sub">сайты · 3D-интерфейсы · telegram-боты</div>
     <div class="badge" data-hero aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="cp" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs>
-      <text font-family="Unbounded,sans-serif" font-size="9.2" font-weight="600" letter-spacing="2.4" fill="currentColor"><textPath href="#cp">ALEKSEYHENGER ✦ КЛИКНИ ПО ЧАСТИЦАМ ✦ </textPath></text></svg><b>✦</b></div>
+      <text font-family="Unbounded,sans-serif" font-size="9.2" font-weight="600" letter-spacing="2.4" fill="currentColor"><textPath href="#cp" data-i18n="badge">ALEKSEYHENGER ✦ КЛИКНИ ПО ЧАСТИЦАМ ✦ </textPath></text></svg><b>✦</b></div>
     <div class="row">
-      <div class="cap" data-hero><span class="dot"></span>Открыт к заказам</div>
-      <div class="scroll cap" data-hero><span class="tap">тапни · </span>листай<i></i></div>
-      <div class="cap" data-hero style="text-align:right">Работаю удалённо</div>
+      <div class="cap" data-hero><span class="dot"></span><span data-i18n="open">Открыт к заказам</span></div>
+      <div class="scroll cap" data-hero><span class="tap" data-i18n="tap">тапни · </span><span data-i18n="scroll">листай</span><i></i></div>
+      <div class="cap" data-hero style="text-align:right" data-i18n="remote">Работаю удалённо</div>
     </div>
   </section>
 
   <section class="mani" id="mani">
     <div class="in wrap">
-      <div class="cap">Подход</div>
-      <p id="maniText">Делаю сайты, которые хочется <i>листать</i> — и не хочется <i>закрывать.</i></p>
+      <div class="cap" data-i18n="approach">Подход</div>
+      <p id="maniText" data-i18n="mani">Делаю сайты, которые хочется <i>листать</i> — и не хочется <i>закрывать.</i></p>
     </div>
   </section>
 
   <section class="big" id="big">
     <div class="in">
       <div>
-        <h2 id="bigWord" aria-label="работы">работы</h2>
-        <div class="note" id="bigNote">избранное, 2026</div>
+        <h2 id="bigWord" aria-label="работы" data-i18n="bigWord">работы</h2>
+        <div class="note" id="bigNote" data-i18n="bigNote">избранное, 2026</div>
       </div>
     </div>
   </section>
@@ -291,27 +295,27 @@ main{position:relative;z-index:1}
   <section class="works" id="works">
     <div class="in">
       <div class="top">
-        <h3 data-split>Проекты</h3>
-        <div class="ctrl"><button class="arr" id="prev" aria-label="Предыдущий проект" data-hover>←</button><div class="count"><span id="cnt">01</span> <small>/ <span id="tot">06</span></small></div><button class="arr" id="next" aria-label="Следующий проект" data-hover>→</button></div>
+        <h3 data-split data-i18n="projects">Проекты</h3>
+        <div class="ctrl"><button class="arr" id="prev" aria-label="Предыдущий проект / Previous" data-hover>←</button><div class="count"><span id="cnt">01</span> <small>/ <span id="tot">06</span></small></div><button class="arr" id="next" aria-label="Следующий проект / Next" data-hover>→</button></div>
       </div>
       <div class="stage"><div class="track" id="track"></div></div>
-      <div class="hint cap">Жми на карточку — откроется кейс</div>
+      <div class="hint cap" data-i18n="hint">Жми на карточку — откроется кейс</div>
     </div>
   </section>
 
   <section class="about" id="about">
-    <h2 data-split>Создаю <i>интерфейсы,</i> в которые влюбляются.</h2>
+    <h2 data-split data-i18n="aboutH">Создаю <i>интерфейсы,</i> в которые влюбляются.</h2>
     <div class="cols">
-      <div class="cap">Обо мне</div>
+      <div class="cap" data-i18n="nAbout">Обо мне</div>
       <div>
-        <p>alekseyhenger — фриланс-разработчик. С начала 2026 делаю на заказ сайты, Telegram-ботов и mini-apps: от лендинга до платформ с оплатой, админкой и ботами. Дизайн, код и деплой — в одних руках.</p>
+        <p data-i18n="aboutP">alekseyhenger — фриланс-разработчик. С начала 2026 делаю на заказ сайты, Telegram-ботов и mini-apps: от лендинга до платформ с оплатой, админкой и ботами. Дизайн, код и деплой — в одних руках.</p>
         <div class="chips" style="margin-top:28px" id="chips"></div>
       </div>
     </div>
   </section>
 
   <section class="svc" id="services">
-    <div class="head"><h2 data-split>Что <i>делаю</i></h2><div class="cap">Цена — после короткого брифа</div></div>
+    <div class="head"><h2 data-split data-i18n="svcH">Что <i>делаю</i></h2><div class="cap" data-i18n="price">Цена — после короткого брифа</div></div>
     <div class="rows" id="rows"></div>
   </section>
 
@@ -320,8 +324,8 @@ main{position:relative;z-index:1}
   </section>
 
   <section class="ct" id="contact">
-    <h2 data-split>Есть <i>проект?</i></h2>
-    <p>Напиши в Telegram — отвечу с идеей и сроками.</p>
+    <h2 data-split data-i18n="ctH">Есть <i>проект?</i></h2>
+    <p data-i18n="ctP">Напиши в Telegram — отвечу с идеей и сроками.</p>
     <a class="big-btn mag" href="https://t.me/alekseyhenger" target="_blank" rel="noopener" data-hover>@alekseyhenger
       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 15 15 5M7 5h8v8"/></svg></a>
     <div class="ft cap">
@@ -331,26 +335,26 @@ main{position:relative;z-index:1}
   </section>
 </main>
 <div class="case" id="case" role="dialog" aria-modal="true" aria-labelledby="cTitle">
-  <button class="x" id="cClose" data-hover>Закрыть ✕</button>
+  <button class="x" id="cClose" data-hover data-i18n="close">Закрыть ✕</button>
   <div class="art" id="cArt"></div>
   <div class="body">
     <div class="cap" id="cTag"></div>
     <h2 id="cTitle"></h2>
     <p id="cDesc"></p>
-    <div class="soon">Подробный кейс — задача, стек и результат — добавлю сюда.</div>
+    <div class="soon" data-i18n="soon">Подробный кейс — задача, стек и результат — добавлю сюда.</div>
     <div class="acts">
-      <button id="cPrev" data-hover>← Пред.</button>
-      <a class="pill go" id="cGo" href="#" target="_blank" rel="noopener" data-hover>Открыть сайт ↗</a>
-      <a class="pill" href="https://t.me/alekseyhenger" target="_blank" rel="noopener" data-hover>Хочу так же ↗</a>
-      <button id="cNext" data-hover>След. →</button>
+      <button id="cPrev" data-hover data-i18n="prev">← Пред.</button>
+      <a class="pill go" id="cGo" href="#" target="_blank" rel="noopener" data-hover data-i18n="openSite">Открыть сайт ↗</a>
+      <a class="pill" href="https://t.me/alekseyhenger" target="_blank" rel="noopener" data-hover data-i18n="same">Хочу так же ↗</a>
+      <button id="cNext" data-hover data-i18n="next">След. →</button>
     </div>
   </div>
 </div>
 <nav class="menu" id="menu" aria-label="Меню">
-  <a class="big" href="#works"><span>Работы<em>08</em></span></a>
-  <a class="big" href="#about"><span>Обо мне</span></a>
-  <a class="big" href="#services"><span>Услуги</span></a>
-  <a class="big" href="#contact"><span><i>Контакт</i></span></a>
+  <a class="big" href="#works"><span><span data-i18n="nWorks">Работы</span><em>08</em></span></a>
+  <a class="big" href="#about"><span data-i18n="nAbout">Обо мне</span></a>
+  <a class="big" href="#services"><span data-i18n="nSvc">Услуги</span></a>
+  <a class="big" href="#contact"><span><i data-i18n="contact">Контакт</i></span></a>
   <div class="mb cap"><a href="https://t.me/alekseyhenger" target="_blank" rel="noopener">Telegram ↗</a></div>
 </nav>
 
@@ -364,38 +368,52 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const coarse=matchMedia("(pointer: coarse)").matches;
 const small=innerWidth<768;
+const LANG=(()=>{try{const v=localStorage.getItem("lang");if(v==="ru"||v==="en")return v}catch(_){}return /^(ru|uk|be)/i.test(navigator.language||"")?"ru":"en"})();
+const tr=(ru,en)=>LANG==="en"?en:ru;
+const EN={nWorks:"Work",nAbout:"About",nSvc:"Services",write:"Message me ↗",sub:"websites · 3D interfaces · telegram bots",badge:"ALEKSEYHENGER ✦ CLICK THE PARTICLES ✦ ",
+  open:"Open for projects",tap:"tap · ",scroll:"scroll",remote:"Working remotely",approach:"Approach",
+  mani:"I build websites people want to <i>scroll</i> — and don't want to <i>close.</i>",bigWord:"works",bigNote:"selected, 2026",projects:"Projects",hint:"Tap a card to open the case",
+  aboutH:"I build <i>interfaces</i> people fall for.",aboutP:"alekseyhenger — freelance developer. Since early 2026 I've been building websites, Telegram bots and mini-apps for clients: from landing pages to platforms with payments, admin panels and bots. Design, code and deployment in one pair of hands.",
+  svcH:"What I <i>do</i>",price:"Price — after a short brief",ctH:"Got a <i>project?</i>",ctP:"Message me on Telegram — I'll reply with an idea and a timeline.",
+  close:"Close ✕",soon:"Full case — the task, stack and result — coming here.",prev:"← Prev",openSite:"Open site ↗",same:"I want one ↗",next:"Next →",contact:"Contact"};
+if(LANG==="en"){document.documentElement.lang="en";document.title="made by alekseyhenger";
+  for(const el of document.querySelectorAll("[data-i18n]")){const v=EN[el.dataset.i18n];if(v!=null)el.innerHTML=v}
+  const bw=document.getElementById("bigWord");bw&&bw.setAttribute("aria-label","works");
+  const md=document.querySelector('meta[name="description"]');md&&md.setAttribute("content","alekseyhenger — websites, 3D interfaces and Telegram bots.")}
+for(const s of document.querySelectorAll("#lang [data-l]"))s.classList.toggle("on",s.dataset.l===LANG);
+document.getElementById("lang").addEventListener("click",()=>{try{localStorage.setItem("lang",LANG==="en"?"ru":"en");sessionStorage.setItem("langY",String(scrollY))}catch(_){}location.reload()});
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 /* ---------- content ---------- */
 const PROJECTS=[
-  {t:"Respawn",d:"Лендинг PS5-клуба: зоны, игры, прайс и онлайн-бронь",k:"orb",tag:"Лендинг · концепт",y:"2026",m:"R",url:"/landings/ps5-club/",shot:"/shots/ps5-club.webp"},
-  {t:"Apex Karting",d:"Картинг-центр: заезды, таблица рекордов, бронь трека",k:"stripes",tag:"Лендинг · концепт",y:"2026",m:"A",url:"/landings/karting/",shot:"/shots/karting.webp"},
-  {t:"Brightwell Dental",d:"Стоматология: услуги, команда, запись на приём",k:"rings",tag:"Лендинг · концепт",y:"2026",m:"B",url:"/landings/dental/",shot:"/shots/dental.webp"},
-  {t:"Ironclad Barber",d:"Барбершоп: услуги, мастера, онлайн-запись",k:"grid",tag:"Лендинг · концепт",y:"2026",m:"I",url:"/landings/barber/",shot:"/shots/barber.webp"},
-  {t:"Meridian Coffee",d:"Обжарщик кофе: интро-анимация, каталог, сборка бокса",k:"dots",tag:"Лендинг · концепт",y:"2026",m:"M",url:"/landings/coffee/",shot:"/shots/coffee.webp"},
-  {t:"WinCase",d:"Telegram mini-app на TON и Stars",k:"orb",tag:"Mini App",y:"2026",m:"W",tg:{name:"WinCase",msgs:[["bot","🎁 Новые кейсы уже в приложении"],["bot","Пополнение через TON и Telegram Stars"]],btn:"Открыть приложение"}},
-  {t:"Lead Hunter",d:"Юзербот, который ловит заказы в TG-чатах",k:"dots",tag:"Бот",y:"2026",m:"L",tg:{name:"Lead Hunter",msgs:[["bot","🔔 Новый заказ · чат «Фриланс IT»"],["bot","«Нужен лендинг на Next.js, сроки — неделя»"],["me","/list_chats"]],btn:"Открыть сообщение"}},
-  {t:"TG Automation",d:"Telegram-автоматизация с LLM: нейрокомменты, автоответы, админка",k:"grid",tag:"Софт · FastAPI + Telethon",y:"2026",m:"T",tg:{name:"Панель управления",msgs:[["bot","Сессии: 5 активны · прокси ок"],["bot","Нейрокомментинг: включён"],["bot","LLM-автоответчик: включён"]],btn:"Открыть админку"}},
+  {t:"Respawn",d:tr("Лендинг PS5-клуба: зоны, игры, прайс и онлайн-бронь","PS5 club landing: zones, games, pricing and online booking"),k:"orb",tag:tr("Лендинг · концепт","Landing · concept"),y:"2026",m:"R",url:"https://respawn-ps5-club.vercel.app/",shot:"/shots/ps5-club.webp"},
+  {t:"Apex Karting",d:tr("Картинг-центр: заезды, таблица рекордов, бронь трека","Karting centre: sessions, leaderboard, track booking"),k:"stripes",tag:tr("Лендинг · концепт","Landing · concept"),y:"2026",m:"A",url:"https://apex-karting-club.vercel.app/",shot:"/shots/karting.webp"},
+  {t:"Brightwell Dental",d:tr("Стоматология: услуги, команда, запись на приём","Dental clinic: services, team, appointment booking"),k:"rings",tag:tr("Лендинг · концепт","Landing · concept"),y:"2026",m:"B",url:"https://brightwell-dental-clinic.vercel.app/",shot:"/shots/dental.webp"},
+  {t:"Ironclad Barber",d:tr("Барбершоп: услуги, мастера, онлайн-запись","Barbershop: services, barbers, online booking"),k:"grid",tag:tr("Лендинг · концепт","Landing · concept"),y:"2026",m:"I",url:"https://ironclad-barbershop.vercel.app/",shot:"/shots/barber.webp"},
+  {t:"Meridian Coffee",d:tr("Обжарщик кофе: интро-анимация, каталог, сборка бокса","Coffee roaster: intro animation, catalogue, build-a-box"),k:"dots",tag:tr("Лендинг · концепт","Landing · concept"),y:"2026",m:"M",url:"https://meridian-coffee-roastery.vercel.app/",shot:"/shots/coffee.webp"},
+  {t:"WinCase",d:tr("Telegram mini-app на TON и Stars","Telegram mini-app on TON and Stars"),k:"orb",tag:"Mini App",y:"2026",m:"W",tg:{name:"WinCase",msgs:[["bot",tr("🎁 Новые кейсы уже в приложении","🎁 New cases are live in the app")],["bot",tr("Пополнение через TON и Telegram Stars","Top up with TON and Telegram Stars")]],btn:tr("Открыть приложение","Open app")}},
+  {t:"Lead Hunter",d:tr("Юзербот, который ловит заказы в TG-чатах","Userbot that catches job posts in Telegram chats"),k:"dots",tag:tr("Бот","Bot"),y:"2026",m:"L",tg:{name:"Lead Hunter",msgs:[["bot",tr("🔔 Новый заказ · чат «Фриланс IT»","🔔 New lead · “Freelance IT” chat")],["bot",tr("«Нужен лендинг на Next.js, сроки — неделя»","“Need a Next.js landing page, one-week deadline”")],["me","/list_chats"]],btn:tr("Открыть сообщение","Open message")}},
+  {t:"TG Automation",d:tr("Telegram-автоматизация с LLM: нейрокомменты, автоответы, админка","Telegram automation with LLM: AI comments, auto-replies, admin panel"),k:"grid",tag:tr("Софт · FastAPI + Telethon","Software · FastAPI + Telethon"),y:"2026",m:"T",tg:{name:tr("Панель управления","Control panel"),msgs:[["bot",tr("Сессии: 5 активны · прокси ок","Sessions: 5 active · proxies OK")],["bot",tr("Нейрокомментинг: включён","AI commenting: on")],["bot",tr("LLM-автоответчик: включён","LLM auto-replies: on")]],btn:tr("Открыть админку","Open admin")}},
 ];
 const STACK=["Next.js","TypeScript","Three.js","GSAP","Tailwind","Prisma","PostgreSQL","Stripe","Docker","Python","aiogram","WordPress"];
 const SERVICES=[
-  ["Лендинг с 3D","Вау-сайт под продукт, запуск или личный бренд — как этот."],
-  ["Сайт с бэкендом","Каталог, бронирования, личный кабинет, оплата и админка."],
-  ["Telegram-бот","Заявки, оплаты, автоответы и интеграции с твоими сервисами."],
-  ["Mini App","Приложение внутри Telegram: TON, Stars, игры и кейсы."],
-  ["Хостинг и поддержка","VPS, Docker, деплой, мониторинг и правки после запуска."],
+  [tr("Лендинг с 3D","3D landing page"),tr("Вау-сайт под продукт, запуск или личный бренд — как этот.","A wow site for a product, launch or personal brand — like this one.")],
+  [tr("Сайт с бэкендом","Website with a backend"),tr("Каталог, бронирования, личный кабинет, оплата и админка.","Catalogue, bookings, user accounts, payments and an admin panel.")],
+  [tr("Telegram-бот","Telegram bot"),tr("Заявки, оплаты, автоответы и интеграции с твоими сервисами.","Leads, payments, auto-replies and integrations with your services.")],
+  ["Mini App",tr("Приложение внутри Telegram: TON, Stars, игры и кейсы.","An app inside Telegram: TON, Stars, games and cases.")],
+  [tr("Хостинг и поддержка","Hosting and support"),tr("VPS, Docker, деплой, мониторинг и правки после запуска.","VPS, Docker, deployment, monitoring and post-launch changes.")],
 ];
 const host=u=>u.startsWith("/")?"hengerweb.vercel.app"+u.replace(/\/$/,""):u.replace(/^https?:\/\//,"").replace(/\/$/,"");
-const visual=(p,i)=>p.shot?`<div class="win"><div class="bar"><i></i><i></i><i></i><span>${esc(host(p.url))}</span></div><img src="${esc(p.shot)}" alt="Скриншот: ${esc(p.t)}" loading="lazy" decoding="async" onerror="this.closest('.art').classList.add('noshot')"></div><b>${esc(p.m)}</b>`
-  :p.tg?`<div class="tgm"><div class="tgh"><span class="av">${esc(p.m)}</span><div><strong>${esc(p.tg.name)}</strong><small>бот</small></div></div><div class="tgb">${p.tg.msgs.map(m=>`<p class="${m[0]==="me"?"me":""}">${esc(m[1])}</p>`).join("")}<span class="tbtn">${esc(p.tg.btn)}</span></div></div>`
+const visual=(p,i)=>p.shot?`<div class="win"><div class="bar"><i></i><i></i><i></i><span>${esc(host(p.url))}</span></div><img src="${esc(p.shot)}" alt="${tr("Скриншот","Screenshot")}: ${esc(p.t)}" loading="lazy" decoding="async" onerror="this.closest('.art').classList.add('noshot')"></div><b>${esc(p.m)}</b>`
+  :p.tg?`<div class="tgm"><div class="tgh"><span class="av">${esc(p.m)}</span><div><strong>${esc(p.tg.name)}</strong><small>${tr("бот","bot")}</small></div></div><div class="tgb">${p.tg.msgs.map(m=>`<p class="${m[0]==="me"?"me":""}">${esc(m[1])}</p>`).join("")}<span class="tbtn">${esc(p.tg.btn)}</span></div></div>`
   :`<b>${esc(p.m)}</b>`;
-$("#track").innerHTML=PROJECTS.map((p,i)=>`<article class="card"><a href="#case" data-i="${i}" aria-label="Открыть кейс ${esc(p.t)}" data-hover>
+$("#track").innerHTML=PROJECTS.map((p,i)=>`<article class="card"><a href="#case" data-i="${i}" aria-label="${tr("Открыть кейс","Open case")} ${esc(p.t)}" data-hover>
   <div class="art k-${esc(p.k)}${p.shot?" has-shot":""}${p.tg?" has-tg":""}"><span class="tag cap">${esc(p.tag)}</span><em>${String(i+1).padStart(2,"0")}</em>${visual(p,i)}</div>
   <div class="meta"><div><h4>${esc(p.t)}</h4><p>${esc(p.d)}</p></div><span class="cap">${esc(p.y)}</span></div></a></article>`).join("");
 $("#tot").textContent=String(PROJECTS.length).padStart(2,"0");
 $("#chips").innerHTML=STACK.map(s=>`<span>${esc(s)}</span>`).join("");
 $("#rows").innerHTML=SERVICES.map((s,i)=>`<a class="r" href="https://t.me/alekseyhenger" target="_blank" rel="noopener" data-hover>
-  <span class="n">${String(i+1).padStart(2,"0")}</span><h3>${esc(s[0])}</h3><p>${esc(s[1])}</p><span class="go">обсудить →</span></a>`).join("");
+  <span class="n">${String(i+1).padStart(2,"0")}</span><h3>${esc(s[0])}</h3><p>${esc(s[1])}</p><span class="go">${tr("обсудить →","discuss →")}</span></a>`).join("");
 
 /* split headings into words */
 for(const el of $$("[data-split]")){
@@ -637,7 +655,7 @@ track.addEventListener("wheel",e=>{
 layoutWorks();
 
 /* marquee */
-const MQ=["Сайты","Боты","3D","Mini Apps","Лендинги","Дашборды"];
+const MQ=LANG==="en"?["Websites","Bots","3D","Mini Apps","Landings","Dashboards"]:["Сайты","Боты","3D","Mini Apps","Лендинги","Дашборды"];
 const mqHTML=(o)=>MQ.map((w,i)=>`<span>${esc(w)} <i>${i%2?"✦":"✶"}</i></span>`).join("");
 for(const id of ["mq1","mq2"]){const r=$("#"+id);r.innerHTML=mqHTML()+mqHTML()}
 const mq=[{el:$("#mq1"),x:0,d:-1},{el:$("#mq2"),x:0,d:1}];
@@ -734,7 +752,8 @@ function frame(){
 async function boot(){
   const fontsReady=Promise.race([document.fonts.load('800 100px "Unbounded"'),new Promise(r=>setTimeout(r,2500))]);
   const cnt0={v:0},ldn=$("#ldn");
-  const count=gsap.to(cnt0,{v:100,duration:reduce?.01:1.5,ease:"power2.inOut",onUpdate:()=>ldn.textContent=String(Math.round(cnt0.v)).padStart(3,"0")});
+  let backY=null;try{backY=sessionStorage.getItem("langY");sessionStorage.removeItem("langY")}catch(_){}
+  const count=gsap.to(cnt0,{v:100,duration:(reduce||backY)?.01:1.5,ease:"power2.inOut",onUpdate:()=>ldn.textContent=String(Math.round(cnt0.v)).padStart(3,"0")});
   await fontsReady;await document.fonts.ready;
   geo.attributes.aP0.array.set(sampleText(innerWidth<900?["aleksey","henger"]:["alekseyhenger"],N));geo.attributes.aP0.needsUpdate=true;
   await count;
@@ -744,7 +763,7 @@ async function boot(){
     .to(U.uIntro,{value:1,duration:reduce?.01:2.6,ease:"power3.out"},"-=.5")
     .fromTo(".hero .made .w>span",{yPercent:110},{yPercent:0,duration:1.2,ease:"expo.out"},"-=2")
     .fromTo(".hero .sub,.hero .row",{opacity:0,y:20},{opacity:1,y:0,duration:1,stagger:.1},"-=1.6")
-    .add(()=>{$("#ld").style.display="none";lenis&&lenis.start();ScrollTrigger.refresh()});}
+    .add(()=>{$("#ld").style.display="none";lenis&&lenis.start();ScrollTrigger.refresh();if(backY){const y=+backY;lenis?lenis.scrollTo(y,{immediate:true,force:true}):scrollTo(0,y)}});}
 boot();
 }
 </script>
