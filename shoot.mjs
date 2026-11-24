@@ -8,6 +8,13 @@ const root = process.cwd();
 const dist = path.join(root, "dist");
 await rm(dist, { recursive: true, force: true });
 await mkdir(path.join(dist, "shots"), { recursive: true });
+// Landing projects (separate Vercel projects from this repo) set LANDING=<folder> and ship only that landing.
+if (process.env.LANDING) {
+  await rm(path.join(dist, "shots"), { recursive: true, force: true });
+  await cp(path.join(root, "landings", process.env.LANDING), dist, { recursive: true });
+  console.log("[landing] built", process.env.LANDING);
+  process.exit(0);
+}
 await cp(path.join(root, "index.html"), path.join(dist, "index.html"));
 
 const local = (slug) => pathToFileURL(path.join(root, "landings", slug, "index.html")).href + "?shot=1";
