@@ -56,7 +56,9 @@ main{position:relative;z-index:1}
 
 .lang{display:inline-flex;align-items:center;gap:4px;min-height:40px;padding:0 6px;border:0;background:none;color:inherit;font:600 11px var(--disp);letter-spacing:.08em;cursor:pointer}
 .lang span{opacity:.45;transition:opacity .3s}.lang span.on{opacity:1;text-decoration:underline;text-underline-offset:4px}
-@media(max-width:640px){.lang{margin-left:auto}.hd .pill{margin-left:0}}
+.hd .pill{white-space:nowrap}
+.lang-m{font-size:13px;padding:0;min-height:0}
+@media(max-width:640px){.hd .lang{display:none}}
 /* cursor */
 .cur{position:fixed;left:0;top:0;z-index:60;width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid #fff;border-radius:50%;pointer-events:none;mix-blend-mode:difference;transition:width .35s,height .35s,margin .35s,background .35s}
 .cur.on{width:78px;height:78px;margin:-39px 0 0 -39px;background:#fff}
@@ -367,7 +369,7 @@ main{position:relative;z-index:1}
   <a class="big" href="#about"><span data-i18n="nAbout">Обо мне</span></a>
   <a class="big" href="#services"><span data-i18n="nSvc">Услуги</span></a>
   <a class="big" href="#contact"><span><i data-i18n="contact">Контакт</i></span></a>
-  <div class="mb cap"><a href="https://t.me/alekseyhenger" target="_blank" rel="noopener">Telegram ↗</a></div>
+  <div class="mb cap"><a href="https://t.me/alekseyhenger" target="_blank" rel="noopener">Telegram ↗</a><button class="lang lang-m" type="button" aria-label="Язык / Language"><span data-l="ru">RU</span>/<span data-l="en">EN</span></button></div>
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -392,8 +394,8 @@ if(LANG==="en"){document.documentElement.lang="en";document.title="made by aleks
   for(const el of document.querySelectorAll("[data-i18n]")){const v=EN[el.dataset.i18n];if(v!=null)el.innerHTML=v}
   const bw=document.getElementById("bigWord");bw&&bw.setAttribute("aria-label","works");
   const md=document.querySelector('meta[name="description"]');md&&md.setAttribute("content","alekseyhenger — websites, 3D interfaces and Telegram bots.")}
-for(const s of document.querySelectorAll("#lang [data-l]"))s.classList.toggle("on",s.dataset.l===LANG);
-document.getElementById("lang").addEventListener("click",()=>{try{localStorage.setItem("lang",LANG==="en"?"ru":"en");sessionStorage.setItem("langY",String(scrollY))}catch(_){}location.reload()});
+for(const s of document.querySelectorAll(".lang [data-l]"))s.classList.toggle("on",s.dataset.l===LANG);
+for(const b of document.querySelectorAll(".lang"))b.addEventListener("click",()=>{try{localStorage.setItem("lang",LANG==="en"?"ru":"en");sessionStorage.setItem("langY",String(scrollY))}catch(_){}location.reload()});
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 /* ---------- content ---------- */
